@@ -1,12 +1,15 @@
 {
+  "homepage": "https://Nithishkuumar.github.io/shopelectronic",
   "name": "commerce",
   "version": "1.0.0",
   "description": "E-commerce ",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node Backend/Server.js",
-    "server": "nodemon Backend/Server.js",
+    "start": "node backend/Server.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "server": "nodemon backend/Server.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node Backend/Seeder.js",
@@ -18,6 +21,7 @@
   "dependencies": {
     "axios": "^1.6.5",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "express": "^4.18.2",
     "http-proxy-middleware": "^2.0.6",
@@ -30,6 +34,7 @@
   "devDependencies": {
     "concurrently": "^8.2.2",
     "dotenv": "^16.3.1",
+    "gh-pages": "^6.1.1",
     "nodemon": "^3.0.2"
   }
 }
