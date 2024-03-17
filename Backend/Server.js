@@ -14,6 +14,8 @@ const bookingrouter = require("./routes/bookingrouter")
 const uploadrouter = require("./routes/uploadroutes")
 const cookieParser = require('cookie-parser')
 const port = process.env.PORT || 5000;
+const bodyParser = require("body-parser");
+ 
 
 connectDB(); // connecting to database
 
@@ -21,6 +23,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
+router.use(bodyParser.json())
 
 // app.get('/',(req,res)=>{
 //     res.send("API is running")
@@ -33,6 +36,16 @@ if(process.env.NODE_ENV==="production"){
     app.use(express.static(path.join(__dirname,"/frontend/build")));
 
     app.get("*",(req,res)=>res.sendFile(path.resolve(__dirname,"frontend","build","index.html")))
+}else{
+    app.get("/",(req,res)=>{
+        res.send("API is running")
+    })
+}
+
+if(process.env.NODE_ENV==="production"){
+    app.get("/*",function(req,res){
+        res.sendFile(path.join(__dirname,"/frontend/"))
+    })
 }
 
 app.use('/api/products/',productrouter)
