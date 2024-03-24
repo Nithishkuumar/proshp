@@ -1,9 +1,9 @@
 const path = require("path")
 const express =  require('express')
 const dotenv =require('dotenv')
+dotenv.config()
 const AppError =require('./utils/appError')
 const globalerror =require('./Controller/errorcontroller')
-dotenv.config()
 const connectDB =require('./config/db')
 const parser = require("cookie-parser")
 const productrouter =require('./routes/productrouter');
